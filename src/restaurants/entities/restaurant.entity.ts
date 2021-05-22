@@ -8,6 +8,13 @@ export class Restaurant {
   // Restaurant 를 위한 ObjectType 을 만들어 줍니다.
   @Field((type) => String)
   name: string;
-  @Field((type) => Boolean, { nullable: true })
-  isGood: boolean;
+
+  @Field((type) => Boolean)
+  isVegan: boolean;
+
+  @Field((type) => String)
+  address: string;
+
+  @Field((type) => String)
+  ownerName: string;
 }
