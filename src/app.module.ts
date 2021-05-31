@@ -30,8 +30,8 @@ import { Restaurant } from './restaurants/entities/restaurant.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       // typeorm 이 db에 연결할때 데이터베이스를 모듈의 현재 상태로 마이그레이션 한다는
-      synchronize: true,
-      logging: true,
+      synchronize: process.env.NODE_ENV !== 'prod',
+      logging: process.env.NODE_ENV !== 'prod',
       entities: [Restaurant],
     }),
     RestaurantsModule,
