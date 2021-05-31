@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantsModule } from './restaurants/restaurants.module';
+import { Restaurant } from './restaurants/entities/restaurant.entity';
 
 @Module({
   // Graphql 의 root 모듈을 설정
@@ -31,6 +32,7 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
       // typeorm 이 db에 연결할때 데이터베이스를 모듈의 현재 상태로 마이그레이션 한다는
       synchronize: true,
       logging: true,
+      entities: [Restaurant],
     }),
     RestaurantsModule,
     GraphQLModule.forRoot({
