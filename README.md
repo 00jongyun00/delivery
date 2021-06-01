@@ -2,7 +2,7 @@
 
 The Backend of Nuber Eats Clone
 
-## User Modle:
+## User Model:
 
 -   id
 -   createdAt
