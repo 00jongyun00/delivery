@@ -5,6 +5,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { Restaurant } from './restaurants/entities/restaurant.entity';
+import { UsersModule } from './users/users.module';
+import { CommonModule } from './common/common.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   // Graphql 의 root 모듈을 설정
@@ -32,13 +35,14 @@ import { Restaurant } from './restaurants/entities/restaurant.entity';
       // typeorm 이 db에 연결할때 데이터베이스를 모듈의 현재 상태로 마이그레이션 한다는
       synchronize: process.env.NODE_ENV !== 'prod',
       logging: process.env.NODE_ENV !== 'prod',
-      entities: [Restaurant],
+      entities: [User],
     }),
-    RestaurantsModule,
     GraphQLModule.forRoot({
       // autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // 경로에 gql 파일을 생성
       autoSchemaFile: true, // 메모리가 파일을생성하도록 설정
     }),
+    UsersModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
