@@ -21,4 +21,9 @@ export class RestaurantService {
     const newRestaurant = this.restaurants.create(createRestaurantDto);
     return this.restaurants.save(newRestaurant);
   }
+  /* updateRestaurant(
+   *   updateRestaurantDto: UpdateRestaurantDto,
+   * ): Promist<Restaurant> {
+   *   return
+   * } */
 }
