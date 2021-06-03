@@ -1,4 +1,4 @@
-# Nuber Eats
+# Uber Eats clone
 
 The Backend of Nuber Eats Clone
 
