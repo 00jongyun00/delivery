@@ -8,6 +8,7 @@ import { Restaurant } from './restaurants/entities/restaurant.entity';
 import { UsersModule } from './users/users.module';
 import { CommonModule } from './common/common.module';
 import { User } from './users/entities/user.entity';
+import { JwtModule } from './jwt/jwt.module';
 
 @Module({
   // Graphql 의 root 모듈을 설정
@@ -41,6 +42,9 @@ import { User } from './users/entities/user.entity';
     GraphQLModule.forRoot({
       // autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // 경로에 gql 파일을 생성
       autoSchemaFile: true, // 메모리가 파일을생성하도록 설정
+    }),
+    JwtModule.forRoot({
+      privateKey: process.env.SECRET_KEY,
     }),
     UsersModule,
     CommonModule,
