@@ -46,6 +46,7 @@ import { JwtMiddleware } from './jwt/jwt.middleware';
     GraphQLModule.forRoot({
       // autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // 경로에 gql 파일을 생성
       autoSchemaFile: true, // 메모리가 파일을생성하도록 설정
+      context: ({ req }) => ({ user: req['user'] }), // context 를 통해서 req['user'] 를 공유하는것
     }),
     JwtModule.forRoot({
       privateKey: process.env.SECRET_KEY,
@@ -60,7 +61,7 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(JwtMiddleware).forRoutes({
       path: '/graphql',
-      method: RequestMethod.ALL,
+      method: RequestMethod.POST,
     });
   }
 }
