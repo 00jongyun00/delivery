@@ -76,13 +76,7 @@ export class UsersResolver {
     @Args('input') editProfileInput: EditProfileInput,
   ): Promise<EditProfileOutput> {
     try {
-      const user = await this.usersService.editProfile(
-        authUser.id,
-        editProfileInput,
-      );
-      if (!user) {
-        throw Error();
-      }
+      await this.usersService.editProfile(authUser.id, editProfileInput);
       return { ok: true };
     } catch (error) {
       return { ok: false, error };
