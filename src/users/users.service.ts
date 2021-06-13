@@ -50,7 +50,11 @@ export class UsersService {
     password,
   }: LoginInput): Promise<{ ok: boolean; error?: string; token?: string }> {
     try {
-      const user = await this.users.findOne({ email });
+      const user = await this.users.findOne(
+        { email },
+        // select 를 하게되면 추가되는 것이 아니라 select 한것만 조회됨
+        { select: ['id', 'password'] },
+      );
       if (!user) {
         return {
           ok: false,
@@ -95,16 +99,23 @@ export class UsersService {
   }
 
   async verifyEmail(code: string): Promise<boolean> {
-    const verification = await this.verification.findOne(
-      { code },
-      // relations 관계의 id만 받아보고 싶을때
-      /* { loadRelationIds: true }, */
-      { relations: ['user'] },
-    );
-    if (verification) {
-      verification.user.verified = true;
-      this.users.save(verification.user);
+    try {
+      const verification = await this.verification.findOne(
+        { code },
+        // relations 관계의 id만 받아보고 싶을때
+        /* { loadRelationIds: true }, */
+        { relations: ['user'] },
+      );
+      if (verification) {
+        console.log(verification.user);
+        verification.user.verified = true;
+        this.users.save(verification.user);
+        return true;
+      }
+      throw new Error();
+    } catch (error) {
+      console.error(error);
+      return false;
     }
-    return false;
   }
 }
