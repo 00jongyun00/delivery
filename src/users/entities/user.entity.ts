@@ -32,6 +32,10 @@ export class User extends CoreEntity {
   @Field((type) => String)
   password: string;
 
+  @Column({ default: false })
+  @Field((type) => Boolean)
+  verified: boolean;
+
   @Column({ type: 'enum', enum: UserRole })
   @Field((type) => UserRole)
   @IsEnum(UserRole)
