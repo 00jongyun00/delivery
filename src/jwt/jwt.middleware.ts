@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
-import { UsersService } from 'src/users/users.service';
+import { UserService } from 'src/users/users.service';
 import { JwtService } from './jwt.service';
 
 // implements 는 class 가 interface 처럼 동작하게 한다.
@@ -8,7 +8,7 @@ import { JwtService } from './jwt.service';
 export class JwtMiddleware implements NestMiddleware {
   constructor(
     private readonly jwtService: JwtService,
-    private readonly userService: UsersService,
+    private readonly userService: UserService,
   ) {}
   async use(req: Request, res: Response, next: NextFunction) {
     if ('x-jwt' in req.headers) {

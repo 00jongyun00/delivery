@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
-import { CONFIG_OPPTIONS } from './jwt.constants';
+import { CONFIG_OPTIONS } from 'src/common/common.constants';
 import { JwtModuleOptions } from './jwt.interfaces';
 
 @Injectable()
 export class JwtService {
   constructor(
-    @Inject(CONFIG_OPPTIONS) private readonly options: JwtModuleOptions,
+    @Inject(CONFIG_OPTIONS) private readonly options: JwtModuleOptions,
   ) {
     console.log(options);
   }
