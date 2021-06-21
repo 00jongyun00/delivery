@@ -4,4 +4,3 @@ dist/
 .DS_store
 .prod.env
 .test.env
-.dev.env
