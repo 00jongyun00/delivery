@@ -7,11 +7,9 @@ import { JwtModuleOptions } from './jwt.interfaces';
 export class JwtService {
   constructor(
     @Inject(CONFIG_OPTIONS) private readonly options: JwtModuleOptions,
-  ) {
-    console.log(options);
-  }
-  // token 에 너무 많은 정보를 넣지 않도록 ID 값만 받도록 변경
+  ) {}
   sign(userId: number): string {
+    console.log(userId);
     return jwt.sign({ id: userId }, this.options.privateKey);
   }
   verify(token: string) {

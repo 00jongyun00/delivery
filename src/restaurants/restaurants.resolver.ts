@@ -1,39 +1,39 @@
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
 import { UpdateRestaurantDto } from './dtos/update-restaurant.dto';
 import { Restaurant } from './entities/restaurant.entity';
-import { RestaurantService } from './restaurant.service';
+import { RestaurantService } from './restaurants.service';
 
-@Resolver((of) => Restaurant)
+@Resolver(of => Restaurant)
 export class RestaurantResolver {
   constructor(private readonly restaurantService: RestaurantService) {}
-  // graphql 에서 list를 명시하는방법
-  @Query((returns) => [Restaurant])
-  // typescript 에서 list를 명시하는 방법
+  @Query(returns => [Restaurant])
   restaurants(): Promise<Restaurant[]> {
     return this.restaurantService.getAll();
   }
-  @Mutation((returns) => Boolean)
+  @Mutation(returns => Boolean)
   async createRestaurant(
     @Args('input') createRestaurantDto: CreateRestaurantDto,
   ): Promise<boolean> {
+    console.log(createRestaurantDto);
     try {
       await this.restaurantService.createRestaurant(createRestaurantDto);
       return true;
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.log(e);
       return false;
     }
   }
-  @Mutation((returns) => Boolean)
+
+  @Mutation(returns => Boolean)
   async updateRestaurant(
     @Args('input') updateRestaurantDto: UpdateRestaurantDto,
   ): Promise<boolean> {
     try {
       await this.restaurantService.updateRestaurant(updateRestaurantDto);
       return true;
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.log(e);
       return false;
     }
   }

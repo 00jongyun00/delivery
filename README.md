@@ -1,21 +1,21 @@
-# Uber Eats clone
+# Nuber Eats
 
 The Backend of Nuber Eats Clone
 
 ## User Model:
 
--   id
--   createdAt
--   updatedAt
+- id
+- createdAt
+- updatedAt
 
--   email
--   password
--   role(cliend | owner | delivery)
+- email
+- password
+- role(client|owner|delivery)
 
 ## User CRUD:
 
--   Create Account
--   Log In
--   See Profile
--   Edit Profile
--   Verify Email
+- Create Account
+- Log In
+- See Profile
+- Edit Profile
+- Verify Email

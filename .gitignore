@@ -2,5 +2,6 @@ node_modules/
 package-lock.json
 dist/
 .DS_store
-.prod.env
-.test.env
+.env.prod
+.env.test
+.env.dev
