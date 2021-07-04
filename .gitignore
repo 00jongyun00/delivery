@@ -5,3 +5,4 @@ dist/
 .env.prod
 .env.test
 .env.dev
+.dev.env
